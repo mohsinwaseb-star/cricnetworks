@@ -1,21 +1,23 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Play, TrendingUp } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Play, TrendingUp } from 'lucide-react';
 import MatchCard from '../components/MatchCard';
 import { FeaturedNewsCard, NewsCard } from '../components/NewsCard';
 import RankingsWidget from '../components/RankingsWidget';
-import { liveMatches, upcomingMatches, recentResults } from '../data/matches';
+import { allMatches, seriesFilters } from '../data/matches';
 import { featuredNews, newsArticles, videos } from '../data/news';
 
-const matchTabs = ['Live', 'Upcoming', 'Results'];
-
 export default function Home() {
-  const [matchTab, setMatchTab] = useState('Live');
+  const [activeFilter, setActiveFilter] = useState('All');
+  const scrollRef = useRef(null);
 
-  const currentMatches =
-    matchTab === 'Live' ? liveMatches :
-    matchTab === 'Upcoming' ? upcomingMatches :
-    recentResults;
+  const filtered = activeFilter === 'All'
+    ? allMatches
+    : allMatches.filter((m) => m.seriesKey === activeFilter);
+
+  const scroll = (dir) => {
+    scrollRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' });
+  };
 
   return (
     <main className="max-w-screen-xl mx-auto px-4 py-6">
@@ -30,47 +32,67 @@ export default function Home() {
           {/* Matches section */}
           <section>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-lg font-bold text-gray-900">Matches</h2>
+              <h2 className="text-base font-bold text-gray-900">Matches</h2>
               <Link to="/scores" className="text-xs text-[#CC0000] hover:underline font-medium flex items-center gap-0.5">
-                All Scores <ChevronRight size={14} />
+                All Scores <ChevronRight size={13} />
               </Link>
             </div>
 
-            {/* Tabs */}
-            <div className="flex border-b border-gray-200 mb-4">
-              {matchTabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setMatchTab(tab)}
-                  className={`px-4 py-2 text-sm font-medium border-b-2 transition-all -mb-px ${
-                    matchTab === tab
-                      ? 'border-[#CC0000] text-[#CC0000]'
-                      : 'border-transparent text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {tab}
-                  {tab === 'Live' && liveMatches.length > 0 && (
-                    <span className="ml-1.5 bg-red-500 text-white text-xs rounded-full w-4 h-4 inline-flex items-center justify-center font-bold">
-                      {liveMatches.length}
-                    </span>
-                  )}
-                </button>
-              ))}
+            {/* Series filter tabs */}
+            <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden mb-4 bg-white">
+              <div className="flex overflow-x-auto scrollbar-none">
+                {seriesFilters.map((f) => (
+                  <button
+                    key={f.key}
+                    onClick={() => setActiveFilter(f.key)}
+                    className={`flex-shrink-0 px-3 py-2 text-xs font-medium whitespace-nowrap border-r border-gray-200 transition-all ${
+                      activeFilter === f.key
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-600 hover:bg-gray-50'
+                    }`}
+                  >
+                    {f.label}
+                    {f.key === 'All' ? ` (${f.count})` : ` (${f.count})`}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {currentMatches.map((match) => (
-                <MatchCard key={match.id} match={match} />
-              ))}
+            {/* Horizontal scrollable cards */}
+            <div className="relative group/scroll">
+              {/* Left arrow */}
+              <button
+                onClick={() => scroll(-1)}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
+              >
+                <ChevronLeft size={14} />
+              </button>
+
+              <div
+                ref={scrollRef}
+                className="flex gap-3 overflow-x-auto pb-2 scrollbar-none"
+              >
+                {filtered.map((match) => (
+                  <MatchCard key={match.id} match={match} />
+                ))}
+              </div>
+
+              {/* Right arrow */}
+              <button
+                onClick={() => scroll(1)}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
+              >
+                <ChevronRight size={14} />
+              </button>
             </div>
           </section>
 
           {/* News grid */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-bold text-gray-900">Latest News</h2>
+              <h2 className="text-base font-bold text-gray-900">Latest News</h2>
               <Link to="/news" className="text-xs text-[#CC0000] hover:underline font-medium flex items-center gap-0.5">
-                All News <ChevronRight size={14} />
+                All News <ChevronRight size={13} />
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
@@ -83,9 +105,9 @@ export default function Home() {
           {/* Videos */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-bold text-gray-900">Videos</h2>
+              <h2 className="text-base font-bold text-gray-900">Videos</h2>
               <Link to="/videos" className="text-xs text-[#CC0000] hover:underline font-medium flex items-center gap-0.5">
-                More Videos <ChevronRight size={14} />
+                More Videos <ChevronRight size={13} />
               </Link>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -122,7 +144,6 @@ export default function Home() {
 
         {/* Right sidebar */}
         <aside className="space-y-6">
-          {/* Rankings widget */}
           <RankingsWidget />
 
           {/* Trending */}
