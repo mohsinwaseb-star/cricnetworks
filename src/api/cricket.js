@@ -4,45 +4,30 @@ const BASE_URL = 'https://api.cricapi.com/v1';
 async function get(endpoint, params = {}) {
   const query = new URLSearchParams({ apikey: API_KEY, offset: 0, ...params });
   const res = await fetch(`${BASE_URL}/${endpoint}?${query}`);
-  if (!res.ok) throw new Error(`API error: ${res.status}`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const json = await res.json();
-  if (json.status !== 'success') throw new Error(json.reason || 'API failed');
+  if (json.status !== 'success') throw new Error(json.reason || 'API error');
   return json;
 }
 
-export async function getCurrentMatches() {
-  return get('currentMatches');
+// Try multiple endpoints in order until one succeeds
+export async function fetchMatches() {
+  const endpoints = ['currentMatches', 'matches'];
+  for (const ep of endpoints) {
+    try {
+      const json = await get(ep);
+      if (json.data?.length) return json.data;
+    } catch {
+      // try next
+    }
+  }
+  return null; // all failed — caller uses static data
 }
 
-export async function getMatches() {
-  return get('matches');
-}
+export async function getSeriesInfo(id) { return get('series_info', { id }); }
+export async function getMatchInfo(id) { return get('match_info', { id }); }
+export async function getMatchScorecard(id) { return get('match_scorecard', { id }); }
 
-export async function getSeries() {
-  return get('series');
-}
-
-export async function getSeriesInfo(id) {
-  return get('series_info', { id });
-}
-
-export async function getMatchInfo(id) {
-  return get('match_info', { id });
-}
-
-export async function getMatchScorecard(id) {
-  return get('match_scorecard', { id });
-}
-
-export async function getPlayers(search) {
-  return get('players', { search });
-}
-
-export async function getPlayerInfo(id) {
-  return get('players_info', { id });
-}
-
-// Normalise CricAPI match object into our internal shape
 export function normaliseMatch(m) {
   const teams = m.teams || [];
   const scores = m.score || [];
@@ -55,7 +40,6 @@ export function normaliseMatch(m) {
 
   const isLive = m.matchStarted && !m.matchEnded;
   const isCompleted = m.matchEnded;
-  const isUpcoming = !m.matchStarted;
 
   return {
     id: m.id,
@@ -86,24 +70,11 @@ export function normaliseMatch(m) {
 }
 
 const FLAGS = {
-  India: '🇮🇳', IND: '🇮🇳',
-  England: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', ENG: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
-  Australia: '🇦🇺', AUS: '🇦🇺',
-  'South Africa': '🇿🇦', SA: '🇿🇦',
-  Pakistan: '🇵🇰', PAK: '🇵🇰',
-  'New Zealand': '🇳🇿', NZ: '🇳🇿',
-  'West Indies': '🏳️', WI: '🏳️',
-  'Sri Lanka': '🇱🇰', SL: '🇱🇰',
-  Bangladesh: '🇧🇩', BAN: '🇧🇩',
-  Zimbabwe: '🇿🇼', ZIM: '🇿🇼',
-  Afghanistan: '🇦🇫', AFG: '🇦🇫',
-  Ireland: '🇮🇪', IRE: '🇮🇪',
-  Nepal: '🇳🇵', NEP: '🇳🇵',
-  Oman: '🇴🇲', OMA: '🇴🇲',
-  Scotland: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', SCO: '🏴󠁧󠁢󠁳󠁣󠁴󠁿',
-  UAE: '🇦🇪',
-  Netherlands: '🇳🇱', NED: '🇳🇱',
-  USA: '🇺🇸',
+  India: '🇮🇳', England: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', Australia: '🇦🇺', 'South Africa': '🇿🇦',
+  Pakistan: '🇵🇰', 'New Zealand': '🇳🇿', 'West Indies': '🏳️', 'Sri Lanka': '🇱🇰',
+  Bangladesh: '🇧🇩', Zimbabwe: '🇿🇼', Afghanistan: '🇦🇫', Ireland: '🇮🇪',
+  Nepal: '🇳🇵', Oman: '🇴🇲', Scotland: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', UAE: '🇦🇪',
+  Netherlands: '🇳🇱', USA: '🇺🇸',
 };
 
 function teamFlag(name) {

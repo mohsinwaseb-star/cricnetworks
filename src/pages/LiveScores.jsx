@@ -6,7 +6,7 @@ import { useMatches } from '../hooks/useMatches';
 export default function LiveScores() {
   const [activeFilter, setActiveFilter] = useState('All');
   const scrollRef = useRef(null);
-  const { matches, filters, loading, error } = useMatches();
+  const { matches, filters, loading } = useMatches();
 
   const filtered = activeFilter === 'All'
     ? matches

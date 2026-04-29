@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { getCurrentMatches, normaliseMatch } from '../api/cricket';
+import { fetchMatches, normaliseMatch } from '../api/cricket';
 import { tickerMatches as fallback } from '../data/matches';
 
 export default function LiveScoresTicker() {
   const [items, setItems] = useState(fallback);
 
   useEffect(() => {
-    getCurrentMatches()
-      .then((json) => {
-        const matches = (json.data || []).map(normaliseMatch);
+    fetchMatches()
+      .then((data) => {
+        const matches = (data || []).map(normaliseMatch);
         if (matches.length === 0) return;
         const ticker = matches.map((m) => ({
           id: m.id,
