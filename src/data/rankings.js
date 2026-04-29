@@ -1,0 +1,90 @@
+export const testBattingRankings = [
+  { rank: 1, prev: 1, player: 'Steve Smith', country: 'AUS', flag: '🇦🇺', rating: 904 },
+  { rank: 2, prev: 3, player: 'Yashasvi Jaiswal', country: 'IND', flag: '🇮🇳', rating: 882 },
+  { rank: 3, prev: 2, player: 'Joe Root', country: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 876 },
+  { rank: 4, prev: 4, player: 'Marnus Labuschagne', country: 'AUS', flag: '🇦🇺', rating: 863 },
+  { rank: 5, prev: 5, player: 'Virat Kohli', country: 'IND', flag: '🇮🇳', rating: 847 },
+  { rank: 6, prev: 7, player: 'Kane Williamson', country: 'NZ', flag: '🇳🇿', rating: 828 },
+  { rank: 7, prev: 6, player: 'Babar Azam', country: 'PAK', flag: '🇵🇰', rating: 819 },
+  { rank: 8, prev: 8, player: 'David Warner', country: 'AUS', flag: '🇦🇺', rating: 805 },
+  { rank: 9, prev: 9, player: 'Ben Duckett', country: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 798 },
+  { rank: 10, prev: 10, player: 'Rohit Sharma', country: 'IND', flag: '🇮🇳', rating: 792 },
+];
+
+export const testBowlingRankings = [
+  { rank: 1, prev: 1, player: 'Jasprit Bumrah', country: 'IND', flag: '🇮🇳', rating: 918 },
+  { rank: 2, prev: 2, player: 'R Ashwin', country: 'IND', flag: '🇮🇳', rating: 873 },
+  { rank: 3, prev: 4, player: 'Pat Cummins', country: 'AUS', flag: '🇦🇺', rating: 858 },
+  { rank: 4, prev: 3, player: 'James Anderson', country: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 843 },
+  { rank: 5, prev: 5, player: 'Kagiso Rabada', country: 'SA', flag: '🇿🇦', rating: 829 },
+  { rank: 6, prev: 6, player: 'Josh Hazlewood', country: 'AUS', flag: '🇦🇺', rating: 815 },
+  { rank: 7, prev: 8, player: 'Ravindra Jadeja', country: 'IND', flag: '🇮🇳', rating: 802 },
+  { rank: 8, prev: 7, player: 'Shaheen Afridi', country: 'PAK', flag: '🇵🇰', rating: 797 },
+  { rank: 9, prev: 9, player: 'Neil Wagner', country: 'NZ', flag: '🇳🇿', rating: 782 },
+  { rank: 10, prev: 10, player: 'Kuldeep Yadav', country: 'IND', flag: '🇮🇳', rating: 764 },
+];
+
+export const odiBattingRankings = [
+  { rank: 1, prev: 1, player: 'Virat Kohli', country: 'IND', flag: '🇮🇳', rating: 887 },
+  { rank: 2, prev: 2, player: 'Babar Azam', country: 'PAK', flag: '🇵🇰', rating: 861 },
+  { rank: 3, prev: 3, player: 'Rohit Sharma', country: 'IND', flag: '🇮🇳', rating: 843 },
+  { rank: 4, prev: 5, player: 'Quinton de Kock', country: 'SA', flag: '🇿🇦', rating: 824 },
+  { rank: 5, prev: 4, player: 'David Warner', country: 'AUS', flag: '🇦🇺', rating: 812 },
+  { rank: 6, prev: 6, player: 'Dawid Malan', country: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 798 },
+  { rank: 7, prev: 7, player: 'Shubman Gill', country: 'IND', flag: '🇮🇳', rating: 786 },
+  { rank: 8, prev: 8, player: 'Rassie van der Dussen', country: 'SA', flag: '🇿🇦', rating: 774 },
+  { rank: 9, prev: 10, player: 'Travis Head', country: 'AUS', flag: '🇦🇺', rating: 762 },
+  { rank: 10, prev: 9, player: 'Jos Buttler', country: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 751 },
+];
+
+export const t20BattingRankings = [
+  { rank: 1, prev: 1, player: 'Suryakumar Yadav', country: 'IND', flag: '🇮🇳', rating: 909 },
+  { rank: 2, prev: 2, player: 'Babar Azam', country: 'PAK', flag: '🇵🇰', rating: 854 },
+  { rank: 3, prev: 4, player: 'Travis Head', country: 'AUS', flag: '🇦🇺', rating: 838 },
+  { rank: 4, prev: 3, player: 'Jos Buttler', country: 'ENG', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 822 },
+  { rank: 5, prev: 5, player: 'Mohammad Rizwan', country: 'PAK', flag: '🇵🇰', rating: 815 },
+  { rank: 6, prev: 6, player: 'Virat Kohli', country: 'IND', flag: '🇮🇳', rating: 801 },
+  { rank: 7, prev: 7, player: 'Finn Allen', country: 'NZ', flag: '🇳🇿', rating: 789 },
+  { rank: 8, prev: 9, player: 'Heinrich Klaasen', country: 'SA', flag: '🇿🇦', rating: 776 },
+  { rank: 9, prev: 8, player: 'Rohit Sharma', country: 'IND', flag: '🇮🇳', rating: 768 },
+  { rank: 10, prev: 10, player: 'Reeza Hendricks', country: 'SA', flag: '🇿🇦', rating: 754 },
+];
+
+export const teamRankings = {
+  test: [
+    { rank: 1, team: 'Australia', flag: '🇦🇺', rating: 128, points: 3462 },
+    { rank: 2, team: 'India', flag: '🇮🇳', rating: 116, points: 3131 },
+    { rank: 3, team: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 107, points: 2888 },
+    { rank: 4, team: 'New Zealand', flag: '🇳🇿', rating: 98, points: 2646 },
+    { rank: 5, team: 'South Africa', flag: '🇿🇦', rating: 96, points: 2592 },
+    { rank: 6, team: 'Pakistan', flag: '🇵🇰', rating: 87, points: 2349 },
+    { rank: 7, team: 'West Indies', flag: '🇼🇮', rating: 74, points: 1998 },
+    { rank: 8, team: 'Sri Lanka', flag: '🇱🇰', rating: 69, points: 1863 },
+    { rank: 9, team: 'Bangladesh', flag: '🇧🇩', rating: 58, points: 1566 },
+    { rank: 10, team: 'Zimbabwe', flag: '🇿🇼', rating: 28, points: 756 },
+  ],
+  odi: [
+    { rank: 1, team: 'Australia', flag: '🇦🇺', rating: 119, points: 3213 },
+    { rank: 2, team: 'India', flag: '🇮🇳', rating: 118, points: 3186 },
+    { rank: 3, team: 'South Africa', flag: '🇿🇦', rating: 113, points: 3051 },
+    { rank: 4, team: 'New Zealand', flag: '🇳🇿', rating: 109, points: 2943 },
+    { rank: 5, team: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 101, points: 2727 },
+    { rank: 6, team: 'Pakistan', flag: '🇵🇰', rating: 95, points: 2565 },
+    { rank: 7, team: 'Afghanistan', flag: '🇦🇫', rating: 88, points: 2376 },
+    { rank: 8, team: 'Bangladesh', flag: '🇧🇩', rating: 79, points: 2133 },
+    { rank: 9, team: 'Sri Lanka', flag: '🇱🇰', rating: 75, points: 2025 },
+    { rank: 10, team: 'West Indies', flag: '🇼🇮', rating: 68, points: 1836 },
+  ],
+  t20: [
+    { rank: 1, team: 'India', flag: '🇮🇳', rating: 271, points: 7317 },
+    { rank: 2, team: 'England', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', rating: 267, points: 7209 },
+    { rank: 3, team: 'Australia', flag: '🇦🇺', rating: 262, points: 7074 },
+    { rank: 4, team: 'Pakistan', flag: '🇵🇰', rating: 258, points: 6966 },
+    { rank: 5, team: 'South Africa', flag: '🇿🇦', rating: 254, points: 6858 },
+    { rank: 6, team: 'New Zealand', flag: '🇳🇿', rating: 248, points: 6696 },
+    { rank: 7, team: 'West Indies', flag: '🇼🇮', rating: 241, points: 6507 },
+    { rank: 8, team: 'Bangladesh', flag: '🇧🇩', rating: 235, points: 6345 },
+    { rank: 9, team: 'Afghanistan', flag: '🇦🇫', rating: 229, points: 6183 },
+    { rank: 10, team: 'Sri Lanka', flag: '🇱🇰', rating: 223, points: 6021 },
+  ],
+};

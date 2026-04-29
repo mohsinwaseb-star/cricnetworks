@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply font-sans text-gray-900 bg-white;
+    margin: 0;
+    padding: 0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+@layer components {
+  .ticker-container {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-content {
+    display: inline-block;
+    animation: ticker-scroll 60s linear infinite;
+  }
+
+  .ticker-content:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .live-dot {
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .score-card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors duration-150 whitespace-nowrap;
+  }
+
+  .nav-link.active {
+    @apply text-espn-red border-b-2 border-espn-red;
+  }
+
+  .tab-button {
+    @apply px-4 py-2 text-sm font-medium transition-all duration-150;
+  }
+
+  .tab-button.active {
+    @apply border-b-2 border-espn-red text-espn-red;
+  }
+
+  .match-status-live {
+    @apply text-xs font-bold text-red-500 uppercase tracking-wide;
+  }
+
+  .match-status-upcoming {
+    @apply text-xs font-medium text-blue-600 uppercase tracking-wide;
+  }
+
+  .match-status-completed {
+    @apply text-xs font-medium text-gray-500 uppercase tracking-wide;
+  }
+}
