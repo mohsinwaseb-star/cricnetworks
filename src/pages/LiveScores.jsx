@@ -1,15 +1,16 @@
 import { useState, useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RefreshCw } from 'lucide-react';
 import MatchCard from '../components/MatchCard';
-import { allMatches, seriesFilters } from '../data/matches';
+import { useMatches } from '../hooks/useMatches';
 
 export default function LiveScores() {
   const [activeFilter, setActiveFilter] = useState('All');
   const scrollRef = useRef(null);
+  const { matches, filters, loading, error } = useMatches();
 
   const filtered = activeFilter === 'All'
-    ? allMatches
-    : allMatches.filter((m) => m.seriesKey === activeFilter);
+    ? matches
+    : matches.filter((m) => m.seriesKey === activeFilter);
 
   const scroll = (dir) => {
     scrollRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' });
@@ -22,7 +23,7 @@ export default function LiveScores() {
       {/* Series filter tabs */}
       <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden mb-6 bg-white">
         <div className="flex overflow-x-auto scrollbar-none">
-          {seriesFilters.map((f) => (
+          {filters.map((f) => (
             <button
               key={f.key}
               onClick={() => setActiveFilter(f.key)}
@@ -38,28 +39,36 @@ export default function LiveScores() {
         </div>
       </div>
 
-      {/* Cards */}
-      <div className="relative group/scroll">
-        <button
-          onClick={() => scroll(-1)}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
-        >
-          <ChevronLeft size={14} />
-        </button>
-
-        <div ref={scrollRef} className="flex gap-3 overflow-x-auto pb-2 scrollbar-none">
-          {filtered.map((match) => (
-            <MatchCard key={match.id} match={match} />
-          ))}
+      {loading ? (
+        <div className="flex items-center justify-center gap-2 py-16 text-gray-500">
+          <RefreshCw size={18} className="animate-spin" />
+          <span className="text-sm">Loading live scores...</span>
         </div>
+      ) : error ? (
+        <p className="text-sm text-red-500 py-8 text-center">Could not load scores: {error}</p>
+      ) : (
+        <div className="relative group/scroll">
+          <button
+            onClick={() => scroll(-1)}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
+          >
+            <ChevronLeft size={14} />
+          </button>
 
-        <button
-          onClick={() => scroll(1)}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
-        >
-          <ChevronRight size={14} />
-        </button>
-      </div>
+          <div ref={scrollRef} className="flex gap-3 overflow-x-auto pb-2 scrollbar-none">
+            {filtered.map((match) => (
+              <MatchCard key={match.id} match={match} />
+            ))}
+          </div>
+
+          <button
+            onClick={() => scroll(1)}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
+          >
+            <ChevronRight size={14} />
+          </button>
+        </div>
+      )}
     </main>
   );
 }

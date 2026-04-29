@@ -14,9 +14,9 @@ export default function Footer() {
         {/* Logo + tagline */}
         <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
           <div>
-            <div className="flex items-center gap-1">
-              <span className="text-[#CC0000] font-black text-2xl">ESPN</span>
-              <span className="text-white font-bold text-lg">cricinfo</span>
+            <div className="flex items-center gap-0">
+              <span className="text-white font-black text-2xl">Cric</span>
+              <span className="text-[#CC0000] font-black text-2xl">Networks</span>
             </div>
             <p className="text-gray-400 text-sm mt-1">The home of cricket</p>
           </div>
@@ -50,10 +50,10 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-gray-500 text-xs">
-            © 2024 ESPN Digital Media (India) Pvt. Ltd. All rights reserved.
+            © 2024 CricNetworks. All rights reserved.
           </p>
           <p className="text-gray-600 text-xs">
-            Powered by ESPN · A subsidiary of The Walt Disney Company
+            Powered by CricAPI · Live Cricket Data
           </p>
         </div>
       </div>

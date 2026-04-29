@@ -1,7 +1,29 @@
-import { tickerMatches } from '../data/matches';
+import { useEffect, useState } from 'react';
+import { getCurrentMatches, normaliseMatch } from '../api/cricket';
+import { tickerMatches as fallback } from '../data/matches';
 
 export default function LiveScoresTicker() {
-  const doubled = [...tickerMatches, ...tickerMatches];
+  const [items, setItems] = useState(fallback);
+
+  useEffect(() => {
+    getCurrentMatches()
+      .then((json) => {
+        const matches = (json.data || []).map(normaliseMatch);
+        if (matches.length === 0) return;
+        const ticker = matches.map((m) => ({
+          id: m.id,
+          teams: `${m.team1.shortName} vs ${m.team2.shortName}`,
+          score: m.team1.score
+            ? `${m.team1.shortName} ${m.team1.score}${m.team1.overs ? ` (${m.team1.overs})` : ''} • ${m.team2.shortName} ${m.team2.score || 'yet to bat'}`
+            : m.result || m.startTime || '',
+          status: m.status === 'live' ? 'LIVE' : m.status === 'result' ? 'Result' : 'Upcoming',
+        }));
+        setItems(ticker);
+      })
+      .catch(() => {});
+  }, []);
+
+  const doubled = [...items, ...items];
 
   return (
     <div className="bg-gray-900 text-white border-b border-gray-700">
@@ -19,6 +41,9 @@ export default function LiveScoresTicker() {
                 )}
                 {match.status === 'Result' && (
                   <span className="text-green-400 font-bold">{match.status}</span>
+                )}
+                {match.status === 'Upcoming' && (
+                  <span className="text-blue-400 font-bold">{match.status}</span>
                 )}
                 <span className="text-gray-300 font-medium">{match.teams}</span>
                 <span className="text-white">{match.score}</span>

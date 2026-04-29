@@ -59,10 +59,8 @@ export default function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="flex items-center">
-              <span className="text-[#CC0000] font-black text-2xl tracking-tight">ESPN</span>
-              <div className="ml-1 text-white">
-                <span className="font-bold text-lg">cricinfo</span>
-              </div>
+              <span className="text-white font-black text-xl tracking-tight">Cric</span>
+              <span className="text-[#CC0000] font-black text-xl tracking-tight">Networks</span>
             </div>
           </Link>
 

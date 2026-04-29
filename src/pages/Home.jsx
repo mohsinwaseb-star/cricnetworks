@@ -1,19 +1,20 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ChevronLeft, Play, TrendingUp } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Play, TrendingUp, RefreshCw } from 'lucide-react';
 import MatchCard from '../components/MatchCard';
 import { FeaturedNewsCard, NewsCard } from '../components/NewsCard';
 import RankingsWidget from '../components/RankingsWidget';
-import { allMatches, seriesFilters } from '../data/matches';
+import { useMatches } from '../hooks/useMatches';
 import { featuredNews, newsArticles, videos } from '../data/news';
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('All');
   const scrollRef = useRef(null);
+  const { matches, filters, loading, error } = useMatches();
 
   const filtered = activeFilter === 'All'
-    ? allMatches
-    : allMatches.filter((m) => m.seriesKey === activeFilter);
+    ? matches
+    : matches.filter((m) => m.seriesKey === activeFilter);
 
   const scroll = (dir) => {
     scrollRef.current?.scrollBy({ left: dir * 300, behavior: 'smooth' });
@@ -41,7 +42,7 @@ export default function Home() {
             {/* Series filter tabs */}
             <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden mb-4 bg-white">
               <div className="flex overflow-x-auto scrollbar-none">
-                {seriesFilters.map((f) => (
+                {filters.map((f) => (
                   <button
                     key={f.key}
                     onClick={() => setActiveFilter(f.key)}
@@ -51,40 +52,43 @@ export default function Home() {
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >
-                    {f.label}
-                    {f.key === 'All' ? ` (${f.count})` : ` (${f.count})`}
+                    {f.label} ({f.count})
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Horizontal scrollable cards */}
-            <div className="relative group/scroll">
-              {/* Left arrow */}
-              <button
-                onClick={() => scroll(-1)}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
-              >
-                <ChevronLeft size={14} />
-              </button>
-
-              <div
-                ref={scrollRef}
-                className="flex gap-3 overflow-x-auto pb-2 scrollbar-none"
-              >
-                {filtered.map((match) => (
-                  <MatchCard key={match.id} match={match} />
-                ))}
+            {loading ? (
+              <div className="flex items-center justify-center gap-2 py-12 text-gray-500">
+                <RefreshCw size={16} className="animate-spin" />
+                <span className="text-sm">Loading live scores...</span>
               </div>
+            ) : error ? (
+              <p className="text-xs text-red-500 py-4">Could not load live data: {error}</p>
+            ) : (
+              <div className="relative group/scroll">
+                <button
+                  onClick={() => scroll(-1)}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
+                >
+                  <ChevronLeft size={14} />
+                </button>
 
-              {/* Right arrow */}
-              <button
-                onClick={() => scroll(1)}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
-              >
-                <ChevronRight size={14} />
-              </button>
-            </div>
+                <div ref={scrollRef} className="flex gap-3 overflow-x-auto pb-2 scrollbar-none">
+                  {filtered.map((match) => (
+                    <MatchCard key={match.id} match={match} />
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => scroll(1)}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-7 h-7 bg-white border border-gray-300 rounded-full shadow flex items-center justify-center opacity-0 group-hover/scroll:opacity-100 transition-opacity"
+                >
+                  <ChevronRight size={14} />
+                </button>
+              </div>
+            )}
           </section>
 
           {/* News grid */}
