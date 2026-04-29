@@ -18,7 +18,7 @@ const playerData = {
 function RankChange({ rank, prev }) {
   const diff = prev - rank;
   if (diff > 0) return <span className="flex items-center text-green-500 text-xs"><ChevronUp size={12} />{diff}</span>;
-  if (diff < 0) return <span className="flex items-center text-red-500 text-xs"><ChevronDown size={12} />{Math.abs(diff)}</span>;
+  if (diff < 0) return <span className="flex items-center text-[#A8E63D] text-xs"><ChevronDown size={12} />{Math.abs(diff)}</span>;
   return <Minus size={12} className="text-gray-400" />;
 }
 
@@ -40,7 +40,7 @@ export default function Rankings() {
             key={f}
             onClick={() => setFormat(f)}
             className={`px-5 py-3 text-sm font-semibold border-b-2 transition-all -mb-px ${
-              format === f ? 'border-[#CC0000] text-[#CC0000]' : 'border-transparent text-gray-500 hover:text-gray-700'
+              format === f ? 'border-[#A8E63D] text-[#A8E63D]' : 'border-transparent text-gray-500 hover:text-gray-700'
             }`}
           >
             {f}
@@ -55,7 +55,7 @@ export default function Rankings() {
             key={c}
             onClick={() => setCategory(c)}
             className={`px-4 py-1.5 text-sm font-medium rounded-full border transition-all ${
-              category === c ? 'bg-[#CC0000] text-white border-[#CC0000]' : 'border-gray-300 text-gray-600 hover:border-gray-400'
+              category === c ? 'bg-[#A8E63D] text-white border-[#A8E63D]' : 'border-gray-300 text-gray-600 hover:border-gray-400'
             }`}
           >
             {c}
@@ -68,7 +68,7 @@ export default function Rankings() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-[#0d1b2a] text-white text-xs uppercase tracking-wide">
+                <tr className="bg-[#1B4D1B] text-white text-xs uppercase tracking-wide">
                   <th className="text-left px-4 py-3 font-semibold">Pos</th>
                   <th className="text-left px-4 py-3 font-semibold"></th>
                   <th className="text-left px-4 py-3 font-semibold">Team</th>
@@ -80,7 +80,7 @@ export default function Rankings() {
                 {teamData.map((team, i) => (
                   <tr key={team.rank} className={`hover:bg-gray-50 transition-colors ${i < 3 ? 'font-medium' : ''}`}>
                     <td className="px-4 py-3">
-                      <span className={`text-sm font-bold ${team.rank <= 3 ? 'text-[#CC0000]' : 'text-gray-500'}`}>
+                      <span className={`text-sm font-bold ${team.rank <= 3 ? 'text-[#A8E63D]' : 'text-gray-500'}`}>
                         {team.rank}
                       </span>
                     </td>
@@ -104,7 +104,7 @@ export default function Rankings() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="bg-[#0d1b2a] text-white text-xs uppercase tracking-wide">
+                <tr className="bg-[#1B4D1B] text-white text-xs uppercase tracking-wide">
                   <th className="text-left px-4 py-3 font-semibold">Pos</th>
                   <th className="text-left px-4 py-3 font-semibold">+/-</th>
                   <th className="text-left px-4 py-3 font-semibold"></th>
@@ -117,7 +117,7 @@ export default function Rankings() {
                 {playerList.map((player) => (
                   <tr key={player.rank} className="hover:bg-gray-50 transition-colors">
                     <td className="px-4 py-3">
-                      <span className={`text-sm font-bold ${player.rank <= 3 ? 'text-[#CC0000]' : 'text-gray-500'}`}>
+                      <span className={`text-sm font-bold ${player.rank <= 3 ? 'text-[#A8E63D]' : 'text-gray-500'}`}>
                         {player.rank}
                       </span>
                     </td>

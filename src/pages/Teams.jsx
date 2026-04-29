@@ -5,7 +5,7 @@ const formatTabs = ['International', 'IPL', 'BBL', 'PSL', 'The Hundred'];
 
 const formColors = {
   W: 'bg-green-500 text-white',
-  L: 'bg-red-500 text-white',
+  L: 'bg-[#A8E63D] text-white',
   D: 'bg-gray-400 text-white',
 };
 
@@ -27,7 +27,7 @@ export default function Teams() {
             key={t}
             onClick={() => setFormat(t)}
             className={`px-5 py-3 text-sm font-semibold border-b-2 whitespace-nowrap transition-all -mb-px ${
-              format === t ? 'border-[#CC0000] text-[#CC0000]' : 'border-transparent text-gray-500 hover:text-gray-700'
+              format === t ? 'border-[#A8E63D] text-[#A8E63D]' : 'border-transparent text-gray-500 hover:text-gray-700'
             }`}
           >
             {t}
@@ -44,7 +44,7 @@ export default function Teams() {
               className="bg-white rounded-xl border border-gray-200 p-4 text-center hover:shadow-md hover:border-gray-300 transition-all group"
             >
               <div className="text-5xl mb-3">{team.flag}</div>
-              <h3 className="font-bold text-gray-900 group-hover:text-[#CC0000] transition-colors">{team.name}</h3>
+              <h3 className="font-bold text-gray-900 group-hover:text-[#A8E63D] transition-colors">{team.name}</h3>
               <p className="text-xs text-gray-500 mb-3">{team.shortName}</p>
               <div className="flex justify-center gap-0.5">
                 {team.recentForm.map((r, i) => (
@@ -86,12 +86,12 @@ function TeamDetail({ team, onBack }) {
 
   return (
     <main className="max-w-screen-xl mx-auto px-4 py-6">
-      <button onClick={onBack} className="text-sm text-[#CC0000] hover:underline mb-4 flex items-center gap-1">
+      <button onClick={onBack} className="text-sm text-[#A8E63D] hover:underline mb-4 flex items-center gap-1">
         ← Back to Teams
       </button>
 
       {/* Team header */}
-      <div className="bg-[#0d1b2a] text-white rounded-xl p-6 mb-6">
+      <div className="bg-[#1B4D1B] text-white rounded-xl p-6 mb-6">
         <div className="flex flex-col sm:flex-row items-center gap-5">
           <div className="text-6xl">{team.flag}</div>
           <div className="text-center sm:text-left">
@@ -100,7 +100,7 @@ function TeamDetail({ team, onBack }) {
             <div className="flex gap-1 mt-3 justify-center sm:justify-start">
               {team.recentForm.map((r, i) => (
                 <span key={i} className={`w-6 h-6 rounded text-xs flex items-center justify-center font-bold ${
-                  r === 'W' ? 'bg-green-500' : r === 'L' ? 'bg-red-500' : 'bg-gray-500'
+                  r === 'W' ? 'bg-green-500' : r === 'L' ? 'bg-[#A8E63D]' : 'bg-gray-500'
                 }`}>{r}</span>
               ))}
               <span className="text-gray-400 text-xs ml-2 self-center">Last 5</span>
@@ -123,7 +123,7 @@ function TeamDetail({ team, onBack }) {
             key={t}
             onClick={() => setTab(t)}
             className={`px-5 py-3 text-sm font-semibold border-b-2 whitespace-nowrap transition-all -mb-px ${
-              tab === t ? 'border-[#CC0000] text-[#CC0000]' : 'border-transparent text-gray-500 hover:text-gray-700'
+              tab === t ? 'border-[#A8E63D] text-[#A8E63D]' : 'border-transparent text-gray-500 hover:text-gray-700'
             }`}
           >
             {t}

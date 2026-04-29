@@ -47,7 +47,7 @@ export default function Stats() {
             key={f}
             onClick={() => setFormat(f)}
             className={`px-5 py-3 text-sm font-semibold border-b-2 transition-all -mb-px ${
-              format === f ? 'border-[#CC0000] text-[#CC0000]' : 'border-transparent text-gray-500 hover:text-gray-700'
+              format === f ? 'border-[#A8E63D] text-[#A8E63D]' : 'border-transparent text-gray-500 hover:text-gray-700'
             }`}
           >
             {f}
@@ -62,7 +62,7 @@ export default function Stats() {
             key={s}
             onClick={() => setStatType(s)}
             className={`px-4 py-1.5 text-sm font-medium rounded-full border transition-all ${
-              statType === s ? 'bg-[#CC0000] text-white border-[#CC0000]' : 'border-gray-300 text-gray-600 hover:border-gray-400'
+              statType === s ? 'bg-[#A8E63D] text-white border-[#A8E63D]' : 'border-gray-300 text-gray-600 hover:border-gray-400'
             }`}
           >
             {s}
@@ -75,7 +75,7 @@ export default function Stats() {
           {statType === 'Batting' ? (
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-[#0d1b2a] text-white text-xs uppercase tracking-wide">
+                <tr className="bg-[#1B4D1B] text-white text-xs uppercase tracking-wide">
                   <th className="text-left px-4 py-3">#</th>
                   <th className="text-left px-4 py-3"></th>
                   <th className="text-left px-4 py-3">Player</th>
@@ -111,7 +111,7 @@ export default function Stats() {
           ) : (
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-[#0d1b2a] text-white text-xs uppercase tracking-wide">
+                <tr className="bg-[#1B4D1B] text-white text-xs uppercase tracking-wide">
                   <th className="text-left px-4 py-3">#</th>
                   <th className="text-left px-4 py-3"></th>
                   <th className="text-left px-4 py-3">Player</th>
@@ -135,7 +135,7 @@ export default function Stats() {
                     </td>
                     <td className="text-right px-4 py-3 text-gray-600">{row.matches}</td>
                     <td className="text-right px-4 py-3 text-gray-600">{row.innings}</td>
-                    <td className="text-right px-4 py-3 font-bold text-[#CC0000]">{row.wickets}</td>
+                    <td className="text-right px-4 py-3 font-bold text-[#A8E63D]">{row.wickets}</td>
                     <td className="text-right px-4 py-3 text-gray-600">{row.avg}</td>
                     <td className="text-right px-4 py-3 text-gray-600">{row.econ}</td>
                     <td className="text-right px-4 py-3 text-gray-600">{row.sr}</td>

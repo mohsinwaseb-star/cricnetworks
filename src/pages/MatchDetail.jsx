@@ -16,12 +16,12 @@ export default function MatchDetail() {
   return (
     <main className="max-w-screen-xl mx-auto px-4 py-6">
       {/* Breadcrumb */}
-      <Link to="/scores" className="flex items-center gap-1 text-sm text-[#CC0000] hover:underline mb-4">
+      <Link to="/scores" className="flex items-center gap-1 text-sm text-[#A8E63D] hover:underline mb-4">
         <ChevronLeft size={16} /> Back to Scores
       </Link>
 
       {/* Match header card */}
-      <div className="bg-[#0d1b2a] text-white rounded-xl p-5 mb-6">
+      <div className="bg-[#1B4D1B] text-white rounded-xl p-5 mb-6">
         <div className="flex items-center gap-2 mb-2">
           <span className={`text-xs font-bold px-2 py-0.5 rounded ${
             match.type === 'Test' ? 'bg-emerald-600' :
@@ -59,7 +59,7 @@ export default function MatchDetail() {
             key={t}
             onClick={() => setTab(t)}
             className={`px-4 py-3 text-sm font-semibold border-b-2 whitespace-nowrap transition-all -mb-px ${
-              tab === t ? 'border-[#CC0000] text-[#CC0000]' : 'border-transparent text-gray-500 hover:text-gray-700'
+              tab === t ? 'border-[#A8E63D] text-[#A8E63D]' : 'border-transparent text-gray-500 hover:text-gray-700'
             }`}
           >
             {t}
@@ -76,7 +76,7 @@ export default function MatchDetail() {
                 key={i}
                 onClick={() => setInningsIdx(i)}
                 className={`px-4 py-1.5 text-sm font-medium rounded-full border transition-all ${
-                  inningsIdx === i ? 'bg-[#CC0000] text-white border-[#CC0000]' : 'border-gray-300 text-gray-600 hover:border-gray-400'
+                  inningsIdx === i ? 'bg-[#A8E63D] text-white border-[#A8E63D]' : 'border-gray-300 text-gray-600 hover:border-gray-400'
                 }`}
               >
                 {inn.flag} {inn.team} {i + 1}st Innings
@@ -158,7 +158,7 @@ export default function MatchDetail() {
                       <td className="text-right px-3 py-2.5 text-gray-600">{b.overs}</td>
                       <td className="text-right px-3 py-2.5 text-gray-600">{b.maidens}</td>
                       <td className="text-right px-3 py-2.5 text-gray-600">{b.runs}</td>
-                      <td className="text-right px-3 py-2.5 font-bold text-[#CC0000]">{b.wickets}</td>
+                      <td className="text-right px-3 py-2.5 font-bold text-[#A8E63D]">{b.wickets}</td>
                       <td className="text-right px-3 py-2.5 text-gray-600">{b.econ}</td>
                     </tr>
                   ))}
@@ -253,7 +253,7 @@ function OversTab() {
               <div
                 key={i}
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${
-                  ball === 'W' ? 'bg-red-500 text-white' :
+                  ball === 'W' ? 'bg-[#A8E63D] text-white' :
                   ball === '6' ? 'bg-purple-500 text-white' :
                   ball === '4' ? 'bg-blue-500 text-white' :
                   ball === '0' ? 'bg-gray-100 text-gray-500' :
@@ -266,7 +266,7 @@ function OversTab() {
           </div>
           <div className="ml-auto text-sm">
             <span className="font-bold">{over.runs}</span>
-            {over.wickets > 0 && <span className="text-red-500 font-bold"> ({over.wickets}W)</span>}
+            {over.wickets > 0 && <span className="text-[#A8E63D] font-bold"> ({over.wickets}W)</span>}
           </div>
         </div>
       ))}

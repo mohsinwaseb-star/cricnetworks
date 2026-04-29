@@ -25,7 +25,7 @@ export default function Series() {
             key={t}
             onClick={() => setTab(t)}
             className={`px-5 py-3 text-sm font-semibold border-b-2 transition-all -mb-px ${
-              tab === t ? 'border-[#CC0000] text-[#CC0000]' : 'border-transparent text-gray-500 hover:text-gray-700'
+              tab === t ? 'border-[#A8E63D] text-[#A8E63D]' : 'border-transparent text-gray-500 hover:text-gray-700'
             }`}
           >
             {t}
@@ -59,7 +59,7 @@ export default function Series() {
             <p className="text-xs text-gray-500 mb-3">{series.format}</p>
 
             {series.score && (
-              <p className="text-sm font-semibold text-[#CC0000]">{series.score}</p>
+              <p className="text-sm font-semibold text-[#A8E63D]">{series.score}</p>
             )}
             {series.result && (
               <p className="text-sm font-semibold text-gray-700">{series.result}</p>
@@ -88,11 +88,11 @@ function SeriesDetail({ series, onBack }) {
 
   return (
     <main className="max-w-screen-xl mx-auto px-4 py-6">
-      <button onClick={onBack} className="text-sm text-[#CC0000] hover:underline mb-4 flex items-center gap-1">
+      <button onClick={onBack} className="text-sm text-[#A8E63D] hover:underline mb-4 flex items-center gap-1">
         ← Back to Series
       </button>
 
-      <div className="bg-[#0d1b2a] text-white rounded-xl p-5 mb-6">
+      <div className="bg-[#1B4D1B] text-white rounded-xl p-5 mb-6">
         <div className="flex items-center gap-2 mb-3">
           {series.flags.map((f, i) => <span key={i} className="text-3xl">{f}</span>)}
           {series.status === 'ongoing' && (
@@ -118,7 +118,7 @@ function SeriesDetail({ series, onBack }) {
             key={t}
             onClick={() => setActiveTab(t)}
             className={`px-5 py-3 text-sm font-semibold border-b-2 transition-all -mb-px ${
-              activeTab === t ? 'border-[#CC0000] text-[#CC0000]' : 'border-transparent text-gray-500 hover:text-gray-700'
+              activeTab === t ? 'border-[#A8E63D] text-[#A8E63D]' : 'border-transparent text-gray-500 hover:text-gray-700'
             }`}
           >
             {t}
@@ -133,7 +133,7 @@ function SeriesDetail({ series, onBack }) {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <span className={`text-xs font-bold px-2 py-0.5 rounded ${
-                    fixture.status === 'live' ? 'bg-red-500 text-white' :
+                    fixture.status === 'live' ? 'bg-[#A8E63D] text-white' :
                     fixture.status === 'completed' ? 'bg-gray-200 text-gray-700' :
                     'bg-blue-100 text-blue-700'
                   }`}>{fixture.matchNo}</span>

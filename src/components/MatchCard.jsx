@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const statusLabel = {
-  live: { text: 'LIVE', cls: 'text-red-500 font-bold' },
+  live: { text: 'LIVE', cls: 'text-[#A8E63D] font-bold' },
   result: { text: 'RESULT', cls: 'text-gray-500 font-semibold' },
   upcoming: { text: 'UPCOMING', cls: 'text-blue-600 font-semibold' },
   abandoned: { text: 'ABANDONED', cls: 'text-gray-500 font-semibold' },
@@ -16,7 +16,7 @@ export default function MatchCard({ match }) {
       {/* Card header */}
       <div className="flex items-center justify-between px-3 pt-3 pb-2">
         <span className={`text-xs uppercase tracking-wide ${label.cls} flex items-center gap-1`}>
-          {isLive && <span className="w-1.5 h-1.5 bg-red-500 rounded-full live-dot" />}
+          {isLive && <span className="w-1.5 h-1.5 bg-[#A8E63D] rounded-full live-dot" />}
           {label.text}
         </span>
         <span className="text-xs text-gray-400 text-right">
@@ -44,11 +44,11 @@ export default function MatchCard({ match }) {
 
       {/* Footer links */}
       <div className="border-t border-gray-100 px-3 py-2 flex items-center gap-3">
-        <a href="#" className="text-xs text-gray-600 hover:text-[#CC0000] font-medium transition-colors">
+        <a href="#" className="text-xs text-gray-600 hover:text-[#A8E63D] font-medium transition-colors">
           Schedule
         </a>
         {match.hasTable && (
-          <a href="#" className="text-xs text-gray-600 hover:text-[#CC0000] font-medium transition-colors">
+          <a href="#" className="text-xs text-gray-600 hover:text-[#A8E63D] font-medium transition-colors">
             Table
           </a>
         )}

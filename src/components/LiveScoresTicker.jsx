@@ -28,7 +28,7 @@ export default function LiveScoresTicker() {
   return (
     <div className="bg-gray-900 text-white border-b border-gray-700">
       <div className="max-w-screen-xl mx-auto flex items-center">
-        <div className="flex-shrink-0 bg-[#CC0000] text-white text-xs font-bold px-3 py-2 flex items-center gap-1.5">
+        <div className="flex-shrink-0 bg-[#A8E63D] text-white text-xs font-bold px-3 py-2 flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 bg-white rounded-full live-dot"></span>
           LIVE
         </div>

@@ -7,13 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        espn: {
-          red: '#CC0000',
-          orange: '#F26522',
-          navy: '#00004A',
-          dark: '#1A1A2E',
-          green: '#00A650',
-          gray: '#F5F5F5',
+        cn: {
+          lime: '#A8E63D',
+          'lime-dark': '#8BC934',
+          'lime-light': '#C5F06A',
+          green: '#1B4D1B',
+          'green-dark': '#0F2D0F',
+          'green-mid': '#2A6B2A',
+          bg: '#0F2010',
         },
       },
       fontFamily: {

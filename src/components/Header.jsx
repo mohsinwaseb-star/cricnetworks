@@ -1,15 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Search, Menu, X, ChevronDown } from 'lucide-react';
-
-const topNavLinks = [
-  { label: 'Cricket', href: '/', active: true },
-  { label: 'Football', href: '#' },
-  { label: 'Tennis', href: '#' },
-  { label: 'Golf', href: '#' },
-  { label: 'Racing', href: '#' },
-  { label: 'More Sports', href: '#' },
-];
+import { Search, Menu, X } from 'lucide-react';
 
 const mainNavLinks = [
   { label: 'Home', href: '/' },
@@ -23,6 +14,48 @@ const mainNavLinks = [
   { label: 'Fantasy', href: '#' },
 ];
 
+function CricNetworksLogo({ size = 'md' }) {
+  const scale = size === 'sm' ? 0.55 : size === 'lg' ? 1 : 0.72;
+  return (
+    <svg
+      viewBox="0 0 320 130"
+      style={{ width: 180 * scale, height: 72 * scale }}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {/* Cricket ball top-left inside C */}
+      <circle cx="44" cy="42" r="20" fill="#e8e8e8" />
+      <ellipse cx="44" cy="42" rx="20" ry="20" stroke="#ccc" strokeWidth="1" />
+      {/* Seam lines on ball */}
+      <path d="M28 34 Q44 44 60 34" stroke="#bbb" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M28 50 Q44 40 60 50" stroke="#bbb" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      {/* Speed lines */}
+      <line x1="8" y1="38" x2="25" y2="40" stroke="#ccc" strokeWidth="2" strokeLinecap="round"/>
+      <line x1="5" y1="44" x2="24" y2="44" stroke="#ddd" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="8" y1="50" x2="25" y2="48" stroke="#ccc" strokeWidth="1" strokeLinecap="round"/>
+
+      {/* CRIC - lime green with dark green shadow */}
+      {/* Shadow layer */}
+      <text x="32" y="78" fontFamily="Impact, Arial Black, sans-serif" fontWeight="900"
+        fontSize="68" fill="#1B4D1B" letterSpacing="-2">CRIC</text>
+      {/* Main lime layer */}
+      <text x="30" y="75" fontFamily="Impact, Arial Black, sans-serif" fontWeight="900"
+        fontSize="68" fill="#A8E63D" letterSpacing="-2">CRIC</text>
+
+      {/* NETWORKS - light gray with dark green shadow */}
+      <text x="32" y="115" fontFamily="Impact, Arial Black, sans-serif" fontWeight="900"
+        fontSize="42" fill="#1B4D1B" letterSpacing="1">NETWORKS</text>
+      <text x="30" y="113" fontFamily="Impact, Arial Black, sans-serif" fontWeight="900"
+        fontSize="42" fill="#d8d8d8" letterSpacing="1">NETWORKS</text>
+
+      {/* Cricket ball inside the O of NETWORKS */}
+      <circle cx="189" cy="96" r="9" fill="#A8E63D" />
+      <path d="M183 92 Q189 97 195 92" stroke="#1B4D1B" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
+      <path d="M183 100 Q189 95 195 100" stroke="#1B4D1B" strokeWidth="1.2" fill="none" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -31,21 +64,16 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50">
-      {/* Top bar */}
-      <div className="bg-[#CC0000] text-white text-xs">
+      {/* Top bar - dark green */}
+      <div style={{ backgroundColor: '#0F2D0F' }} className="text-white text-xs border-b border-white/10">
         <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between h-8">
-          <div className="flex items-center gap-4">
-            {topNavLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`hover:text-white/80 transition-colors font-medium ${link.active ? 'font-bold underline underline-offset-2' : 'text-white/80'}`}
-              >
-                {link.label}
-              </a>
+          <div className="flex items-center gap-4 text-white/70">
+            <span className="font-bold" style={{ color: '#A8E63D' }}>Cricket</span>
+            {['Football', 'Tennis', 'Golf', 'More Sports'].map((s) => (
+              <a key={s} href="#" className="hover:text-white transition-colors">{s}</a>
             ))}
           </div>
-          <div className="flex items-center gap-3 text-white/80">
+          <div className="flex items-center gap-3 text-white/60">
             <a href="#" className="hover:text-white">Sign In</a>
             <span>|</span>
             <a href="#" className="hover:text-white">Register</a>
@@ -53,27 +81,24 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Main header */}
-      <div className="bg-[#0d1b2a] text-white shadow-lg">
+      {/* Main header - dark green */}
+      <div style={{ backgroundColor: '#1B4D1B' }} className="text-white shadow-lg">
         <div className="max-w-screen-xl mx-auto px-4 flex items-center justify-between h-14">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="flex items-center">
-              <span className="text-white font-black text-xl tracking-tight">Cric</span>
-              <span className="text-[#CC0000] font-black text-xl tracking-tight">Networks</span>
-            </div>
+          <Link to="/" className="flex-shrink-0">
+            <CricNetworksLogo size="md" />
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1 flex-1 mx-6">
+          <nav className="hidden lg:flex items-center gap-0.5 flex-1 mx-4">
             {mainNavLinks.map((link) => (
               <Link
                 key={link.label}
                 to={link.href}
                 className={`px-3 py-1.5 text-sm font-medium rounded transition-all duration-150 whitespace-nowrap ${
                   location.pathname === link.href
-                    ? 'text-white bg-white/10'
-                    : 'text-gray-300 hover:text-white hover:bg-white/5'
+                    ? 'text-[#0F2D0F] bg-[#A8E63D] font-bold'
+                    : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
                 {link.label}
@@ -85,34 +110,37 @@ export default function Header() {
           <div className="flex items-center gap-2">
             {searchOpen ? (
               <div className="flex items-center gap-2 bg-white/10 rounded-full px-3 py-1.5">
-                <Search size={14} className="text-gray-400" />
+                <Search size={14} className="text-gray-300" />
                 <input
                   autoFocus
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search players, teams, series..."
-                  className="bg-transparent text-white text-sm outline-none w-48 placeholder-gray-400"
+                  placeholder="Search players, teams..."
+                  className="bg-transparent text-white text-sm outline-none w-44 placeholder-gray-400"
                 />
                 <button onClick={() => setSearchOpen(false)}>
-                  <X size={14} className="text-gray-400 hover:text-white" />
+                  <X size={14} className="text-gray-300 hover:text-white" />
                 </button>
               </div>
             ) : (
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-full transition-all"
+                className="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all"
               >
                 <Search size={18} />
               </button>
             )}
 
-            <button className="hidden sm:block bg-[#CC0000] text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-red-700 transition-colors">
+            <button
+              className="hidden sm:block text-[#1B4D1B] text-xs font-bold px-3 py-1.5 rounded hover:opacity-90 transition-opacity"
+              style={{ backgroundColor: '#A8E63D' }}
+            >
               SUBSCRIBE
             </button>
 
             <button
-              className="lg:hidden p-2 text-gray-300 hover:text-white"
+              className="lg:hidden p-2 text-white/80 hover:text-white"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -122,7 +150,7 @@ export default function Header() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="lg:hidden bg-[#0d1b2a] border-t border-white/10">
+          <div style={{ backgroundColor: '#1B4D1B' }} className="lg:hidden border-t border-white/10">
             <nav className="max-w-screen-xl mx-auto px-4 py-3 flex flex-col gap-1">
               {mainNavLinks.map((link) => (
                 <Link
@@ -131,8 +159,8 @@ export default function Header() {
                   onClick={() => setMobileOpen(false)}
                   className={`px-3 py-2 text-sm font-medium rounded transition-colors ${
                     location.pathname === link.href
-                      ? 'text-white bg-white/10'
-                      : 'text-gray-300 hover:text-white hover:bg-white/5'
+                      ? 'text-[#0F2D0F] bg-[#A8E63D] font-bold'
+                      : 'text-white/80 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   {link.label}
@@ -143,19 +171,18 @@ export default function Header() {
         )}
       </div>
 
-      {/* Sub nav */}
-      <div className="bg-[#1a2d3d] text-white border-b border-white/10">
+      {/* Sub nav - slightly lighter green */}
+      <div style={{ backgroundColor: '#2A6B2A' }} className="text-white border-b border-white/10">
         <div className="max-w-screen-xl mx-auto px-4 flex items-center gap-6 h-9 overflow-x-auto scrollbar-none">
-          <a href="#" className="text-xs text-white/60 hover:text-white whitespace-nowrap">IND vs ENG</a>
-          <a href="#" className="text-xs text-white/60 hover:text-white whitespace-nowrap">AUS vs SA</a>
-          <a href="#" className="text-xs text-white/60 hover:text-white whitespace-nowrap">PAK vs NZ</a>
-          <a href="#" className="text-xs text-white/60 hover:text-white whitespace-nowrap">WTC Final</a>
-          <a href="#" className="text-xs text-white/60 hover:text-white whitespace-nowrap">IPL 2024</a>
-          <a href="#" className="text-xs text-white/60 hover:text-white whitespace-nowrap">SA20</a>
-          <a href="#" className="text-xs text-white/60 hover:text-white whitespace-nowrap">BBL</a>
-          <a href="#" className="text-xs text-red-400 font-medium hover:text-red-300 whitespace-nowrap flex items-center gap-1">
-            <span className="w-1.5 h-1.5 bg-red-400 rounded-full live-dot"></span>
-            3 Live Matches
+          {['IND vs ENG', 'AUS vs SA', 'PAK vs NZ', 'WTC Final', 'IPL 2024', 'SA20', 'BBL'].map((label) => (
+            <a key={label} href="#" className="text-xs text-white/60 hover:text-white whitespace-nowrap transition-colors">
+              {label}
+            </a>
+          ))}
+          <a href="#" className="text-xs font-medium hover:opacity-80 whitespace-nowrap flex items-center gap-1 ml-auto"
+            style={{ color: '#A8E63D' }}>
+            <span className="w-1.5 h-1.5 rounded-full live-dot" style={{ backgroundColor: '#A8E63D' }}></span>
+            Live Matches
           </a>
         </div>
       </div>

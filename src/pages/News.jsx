@@ -27,7 +27,7 @@ export default function News() {
             key={c}
             onClick={() => setCategory(c)}
             className={`px-4 py-1.5 text-sm font-medium rounded-full border transition-all ${
-              category === c ? 'bg-[#CC0000] text-white border-[#CC0000]' : 'border-gray-300 text-gray-600 hover:border-gray-400'
+              category === c ? 'bg-[#A8E63D] text-white border-[#A8E63D]' : 'border-gray-300 text-gray-600 hover:border-gray-400'
             }`}
           >
             {c}

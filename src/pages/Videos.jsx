@@ -25,12 +25,12 @@ export default function Videos() {
           onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1540747913346-19212a729db2?w=800&q=80'; }}
         />
         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <div className="w-16 h-16 bg-[#CC0000] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div className="w-16 h-16 bg-[#A8E63D] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
             <Play size={24} className="text-white ml-1" fill="white" />
           </div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 to-transparent">
-          <span className="text-xs bg-[#CC0000] text-white px-2 py-0.5 rounded font-bold mb-2 inline-block">
+          <span className="text-xs bg-[#A8E63D] text-white px-2 py-0.5 rounded font-bold mb-2 inline-block">
             {extraVideos[2].category}
           </span>
           <h2 className="text-white text-xl font-bold">{extraVideos[2].title}</h2>
@@ -43,7 +43,7 @@ export default function Videos() {
         {categories.map((c) => (
           <button
             key={c}
-            className="px-4 py-1.5 text-sm font-medium rounded-full border border-gray-300 text-gray-600 hover:border-gray-400 first:bg-[#CC0000] first:text-white first:border-[#CC0000] transition-all"
+            className="px-4 py-1.5 text-sm font-medium rounded-full border border-gray-300 text-gray-600 hover:border-gray-400 first:bg-[#A8E63D] first:text-white first:border-[#A8E63D] transition-all"
           >
             {c}
           </button>
@@ -62,19 +62,19 @@ export default function Videos() {
                 onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1540747913346-19212a729db2?w=400&q=80'; }}
               />
               <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="w-10 h-10 bg-[#CC0000] rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-[#A8E63D] rounded-full flex items-center justify-center">
                   <Play size={16} className="text-white ml-0.5" fill="white" />
                 </div>
               </div>
               <span className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-1.5 py-0.5 rounded font-mono">
                 {video.duration}
               </span>
-              <span className="absolute top-2 left-2 bg-[#CC0000]/90 text-white text-xs px-1.5 py-0.5 rounded font-medium">
+              <span className="absolute top-2 left-2 bg-[#A8E63D]/90 text-white text-xs px-1.5 py-0.5 rounded font-medium">
                 {video.category}
               </span>
             </div>
             <div className="mt-2">
-              <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug group-hover:text-[#CC0000] transition-colors">
+              <h3 className="text-sm font-semibold text-gray-900 line-clamp-2 leading-snug group-hover:text-[#A8E63D] transition-colors">
                 {video.title}
               </h3>
               <p className="text-xs text-gray-500 mt-1">{video.views} views</p>

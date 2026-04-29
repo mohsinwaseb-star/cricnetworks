@@ -45,7 +45,7 @@ export default function LiveScores() {
           <span className="text-sm">Loading live scores...</span>
         </div>
       ) : error ? (
-        <p className="text-sm text-red-500 py-8 text-center">Could not load scores: {error}</p>
+        <p className="text-sm text-[#A8E63D] py-8 text-center">Could not load scores: {error}</p>
       ) : (
         <div className="relative group/scroll">
           <button

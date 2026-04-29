@@ -34,7 +34,7 @@ export default function Home() {
           <section>
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-base font-bold text-gray-900">Matches</h2>
-              <Link to="/scores" className="text-xs text-[#CC0000] hover:underline font-medium flex items-center gap-0.5">
+              <Link to="/scores" className="text-xs text-[#A8E63D] hover:underline font-medium flex items-center gap-0.5">
                 All Scores <ChevronRight size={13} />
               </Link>
             </div>
@@ -65,7 +65,7 @@ export default function Home() {
                 <span className="text-sm">Loading live scores...</span>
               </div>
             ) : error ? (
-              <p className="text-xs text-red-500 py-4">Could not load live data: {error}</p>
+              <p className="text-xs text-[#A8E63D] py-4">Could not load live data: {error}</p>
             ) : (
               <div className="relative group/scroll">
                 <button
@@ -95,7 +95,7 @@ export default function Home() {
           <section>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-bold text-gray-900">Latest News</h2>
-              <Link to="/news" className="text-xs text-[#CC0000] hover:underline font-medium flex items-center gap-0.5">
+              <Link to="/news" className="text-xs text-[#A8E63D] hover:underline font-medium flex items-center gap-0.5">
                 All News <ChevronRight size={13} />
               </Link>
             </div>
@@ -110,7 +110,7 @@ export default function Home() {
           <section>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-base font-bold text-gray-900">Videos</h2>
-              <Link to="/videos" className="text-xs text-[#CC0000] hover:underline font-medium flex items-center gap-0.5">
+              <Link to="/videos" className="text-xs text-[#A8E63D] hover:underline font-medium flex items-center gap-0.5">
                 More Videos <ChevronRight size={13} />
               </Link>
             </div>
@@ -132,11 +132,11 @@ export default function Home() {
                     <span className="absolute bottom-1.5 right-1.5 bg-black/70 text-white text-xs px-1 rounded">
                       {video.duration}
                     </span>
-                    <span className="absolute top-1.5 left-1.5 bg-[#CC0000] text-white text-xs px-1.5 py-0.5 rounded font-medium">
+                    <span className="absolute top-1.5 left-1.5 bg-[#A8E63D] text-white text-xs px-1.5 py-0.5 rounded font-medium">
                       {video.category}
                     </span>
                   </div>
-                  <p className="text-xs font-semibold text-gray-800 mt-2 line-clamp-2 leading-snug group-hover:text-[#CC0000] transition-colors">
+                  <p className="text-xs font-semibold text-gray-800 mt-2 line-clamp-2 leading-snug group-hover:text-[#A8E63D] transition-colors">
                     {video.title}
                   </p>
                   <p className="text-xs text-gray-500 mt-0.5">{video.views} views</p>
@@ -153,7 +153,7 @@ export default function Home() {
           {/* Trending */}
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-2">
-              <TrendingUp size={16} className="text-[#CC0000]" />
+              <TrendingUp size={16} className="text-[#A8E63D]" />
               <h3 className="font-bold text-gray-900">Trending</h3>
             </div>
             <div className="divide-y divide-gray-50">
@@ -168,7 +168,7 @@ export default function Home() {
                   <span className="text-2xl font-black text-gray-200 leading-none mt-0.5 flex-shrink-0 w-7">
                     {i + 1}
                   </span>
-                  <p className="text-sm font-medium text-gray-800 group-hover:text-[#CC0000] transition-colors leading-snug">
+                  <p className="text-sm font-medium text-gray-800 group-hover:text-[#A8E63D] transition-colors leading-snug">
                     {item}
                   </p>
                 </a>
@@ -180,7 +180,7 @@ export default function Home() {
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
             <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
               <h3 className="font-bold text-gray-900">More Stories</h3>
-              <Link to="/news" className="text-xs text-[#CC0000] hover:underline">See all</Link>
+              <Link to="/news" className="text-xs text-[#A8E63D] hover:underline">See all</Link>
             </div>
             <div className="p-4 space-y-3">
               {newsArticles.slice(6).map((article) => (
